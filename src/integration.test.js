@@ -1,6 +1,13 @@
 import { storeFactory } from '../test/testUtils';
 import { guessWord } from './actions';
 
+
+/**
+ *  1. create a store with initial state
+ *  2. dispatch action creator 
+ *  3. check if state is as expected
+ */
+
 describe('guessWord action dispatcher', () => {
   const secretWord = 'party';
   const unsuccessfulGuess = 'train';
