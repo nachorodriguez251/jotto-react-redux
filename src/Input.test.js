@@ -4,8 +4,12 @@ import { shallow } from 'enzyme';
 import { findByTestAttr, storeFactory } from '../test/testUtils';
 import Input from './Input';
 
-const setup = (initialState={}) => {
+const setup = (initialState={}) => 
+{
+  // create a store for each test with app settings
   const store = storeFactory(initialState);
+
+  // need dive() to get child component from Connected HOC
   const wrapper = shallow(<Input store={store} />).dive().dive();
   return wrapper;
 }
