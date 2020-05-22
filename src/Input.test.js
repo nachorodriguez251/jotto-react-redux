@@ -38,7 +38,9 @@ describe('render', () => {
       expect(submitButton.length).toBe(1);
     });        
   });
+
   
+
   describe('words has been guessed', () => {
     let wrapper;
 
@@ -63,6 +65,8 @@ describe('render', () => {
     });   
   });
 });
+
+
 
 describe('redux props', () => {
   test('has success piece of state as prop', () => {
