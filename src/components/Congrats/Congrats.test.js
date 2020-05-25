@@ -1,8 +1,7 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 
-import { findByTestAttr } from '../test/testUtils';
+import { findByTestAttr } from '../../../test/testUtils';
 import Congrats from './Congrats';
 
 const setup = (props = {}) => {
@@ -10,9 +9,9 @@ const setup = (props = {}) => {
 }
 
 test('renders without error', () => {
-const wrapper = setup();
-const component = findByTestAttr(wrapper, 'component-congrats');
-expect(component.length).toBe(1);
+  const wrapper = setup();
+  const component = findByTestAttr(wrapper, 'component-congrats');
+  expect(component.length).toBe(1);
 });
 
 test('renders no text when success prop is false', () => {
