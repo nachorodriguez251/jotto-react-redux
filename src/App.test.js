@@ -48,13 +48,19 @@ describe('redux properties', () => {
 });
 
   test('`getSecretWord` runs on App mount', () => {
+    // with this mock we can check how many times it was called
     const getSecretWordMock = jest.fn();
 
+
+    // we pass the mock created as prop, to be called in componentDidMount()
     const wrapper = shallow(<UnconnectedApp getSecretWord = {getSecretWordMock} />);
 
+    // call the life cycle method on the instance created with shallow
     wrapper.instance().componentDidMount();
 
+    // get how many times the mock was called
     const getSecretWordMockCalls = getSecretWordMock.mock.calls.length;
 
+    // expected the mock to be called 1 time
     expect(getSecretWordMockCalls).toBe(1);
   })

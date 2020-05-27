@@ -41,6 +41,9 @@ describe('getSecretWord action creator', () => {
       });
     });
 
+    // need to return the store.dispatch promise 
+    // if not, the test will complete before the 
+    // promise resolves and the test will never fail 
     return store.dispatch(getSecretWord())
       .then(() => {
         const newState = store.getState();

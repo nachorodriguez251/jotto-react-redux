@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { findByTestAttr, storeFactory } from '../../../test/testUtils';
-import Input from './Input';
+import Input, { UnconnectedInput } from './Input';
 
 const setup = (initialState={}) => 
 {
@@ -83,5 +83,43 @@ describe('redux props', () => {
   });
 });
 
+describe('`guessWord` action creator call', () => {
+  let guessWordMock;
+  let wrapper;
+  const guessedWord = 'train';
 
+  beforeEach(() => {
+    // create mock for guessWord funciton
+    guessWordMock = jest.fn();
 
+    // create props with mock function inside
+    const props = {
+      guessWord: guessWordMock,
+    };
+
+    // create shallow wrapper for Input with mock function as prop
+    wrapper = shallow(<UnconnectedInput {...props} />);
+
+    // add value to input box
+    wrapper.setState({ currentGuess: guessedWord });
+
+    // find submitButton in created component
+    const submitButton = findByTestAttr(wrapper, 'submit-button');
+
+    // simulate click on button found
+    submitButton.simulate('click', { preventDefault() {} });
+  });
+
+  test('calls `guessWords` when button is clicked', () => {
+    // get how many times mock was called
+    const getGuessWordMockCalls = guessWordMock.mock.calls.length;
+    // expect the mock to be called one time
+    expect(getGuessWordMockCalls).toBe(1);
+  });
+
+  test('calls `guessedWords` with input value as an argument', () => {
+    const guessWordArg = guessWordMock.mock.calls[0][0];
+    expect(guessWordArg).toBe(guessedWord);
+  })
+
+});
